@@ -1,0 +1,15 @@
+#! /usr/bin/expect
+# This scripts use to connetc server
+# Try it by three parameters : ip src dest
+set ip [lindex $argv 0]
+set src [lindex $argv 1]
+set dest [lindex $argv 2]
+spawn scp -P1212 $src root@$ip:$dest
+expect {
+-timeout 30
+"yes/no"    {send "yes\r"; exp_continue}
+"*password:"  {send "huayiqiu\r"}
+timeout  {puts "interruput by timeout!";return}
+}
+expect eof
+exit

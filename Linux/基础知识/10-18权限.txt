@@ -1,0 +1,64 @@
+1.查找命令位置
+  find / -type f -name "ifconfig"全局查找
+  which ifconfig  在系统环境变量中查找$PATH（推荐使用）
+  where -b ifconfig 查找二进制文件
+  locate  ifconfig 从数据库中查找，一般不用
+2.关机
+  shutdown -h now立刻关机（常用）
+  shutdown -h +1 一分钟以后关机
+  init0  切换运行级别
+  halt  立即停止系统，需要人工关闭电源（常用）
+  halt -p 
+3.注销
+  logout  
+  exit
+  ctrl + d（常用）
+4.快捷键
+  Ctrl +a   切换到命令行开始
+  Ctrl +e   切换到命令行结尾
+  Ctrl +c   终止当前操作
+  Ctrl +d   logout
+  Ctrl +l   清屏
+  Ctrl +u   剪切光标以前
+  Ctrl +k   剪切光标以后
+  Ctrl +y   粘贴
+  Ctrl +shift +c 命令行复制内容
+  Ctrl +shift +v 命令行粘贴（shift+insert）
+5.权限注意事项
+  对于普通文件，r表示读取、阅读内容，w表示新增、修改
+  如果没有r，那么vi无法编辑，强制编辑会覆盖，echo 可以。
+  x表示执行。但是，文件本身要能够执行，普通用户要有r的权  限才可以执行，root用户默认有执行权限。
+  特别提示：删除文件受父目录的控制！
+  练习练习练习！
+6.用户和用户组
+  useradd test 
+  userdel -r oldboy 创建用户，指定uid
+  groupadd test [-g 506]创建组，指定gid
+  groupdel -r oldboy
+  chown [-R] oldboy.incahome oldboy.txt更改属主和组
+  chown  :incahome oldboy.txt
+  -R 递归改变
+
+7.更改权限
+  chmod u=rw,g=rw,o=rx oldboy.txt
+  chmod 665 oldboy.txt
+  安全的权限设置
+  目录：755 root root
+  文件：644 root root
+  博客关键字：深入浅出 umask
+  对于目录，权限值755=777-umask
+  对于文件，权限值644=666-umask，特别说明，当umask某一位  上是奇数的时候，要先+1变偶数！
+8.chattr 
+  +- i设置i，只允许查看
+  +- a 设置a，只允许添加
+  =  设置
+  lsattr 查看
+
+
+
+
+
+
+
+
+

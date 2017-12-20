@@ -1,0 +1,5 @@
+重启策略
+1./application/nginx/sbin/nginx -t 检查语法
+2./application/nginx/sbin/nginx -s reload 重启服务
+3./application/nginx/sbin/nginx -h 显示帮助
+4.一般来说要写脚本去测试服务是否正常，重启代价高

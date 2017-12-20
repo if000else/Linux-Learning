@@ -1,0 +1,67 @@
+1.用户分类
+  超级用户  UID=0 root
+  虚拟用户  UID=1-499 服务启动，不能登录
+  普通用户  UID>=500
+  
+  关联文件：/etc/passwd /etc/shadow 等
+2.useradd,userdel,usermod，增删改
+  id 打印ID
+  su 更换用户
+  sudo 提升权限
+3./etc/skel文件
+  在创建用户的时候，系统会复制此目录下的隐藏文件，这是默认的用户配置文件，就类似于Windows的用户配置文件一样，所以如果删除了此文件，就会报错。
+  如：-bash-4.1$ 
+  这时候要重新到/etc/skel下面去拷贝初始文件
+4./etc/login.dfs了解就可以
+
+5./etc/default/useradd查看命令默认配置
+
+6.passwd命令
+  -x ,-n ,-i,-l,-u
+7.userdel删除用户
+  注意事项：工作中尽量不要使用！！！
+  可以这么做：
+  a.#注释掉
+  b.usermod -s /sbin/nologin oldboy不让登录
+  c.passwd -l oldboy 锁定用户
+8.id 
+  -u显示用户id,-un用户名
+  -g           -gn   组
+9.查看登录
+  w  谁登录了，在做什么
+  who 谁登录了
+  last 谁登录过，还有lastlog
+  whoami  当前用户
+10.su 切换用户
+  -,-l,-login三个都是切换到用户并使用环境变量
+  -c 以某个身份运行 su - oldboy -c touch a.txt
+11.sudo
+  -l  查看可用权限
+  visudo 等价于 vi /etc/sudoers
+  visudo -c  检查sudoers语法错误
+
+  别名方法集中添加权限
+  注意：
+  1).ALL必须大写，2).禁止的命令放在后面 3).一行内容可以用"\"斜线换行  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+1.通过sudo 提权
+修改sudosers文件，加用户权限
+ssh -t -p22 oldboy@10.0.0.9 sudo rysnc ./host  /etc/  这里一定要加-t
+
+
+2.通过加s权限，但是这样很不安全
+chmod 4755 /usr/bin/rsync 

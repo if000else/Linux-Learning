@@ -1,0 +1,55 @@
+复习：
+用户管理
+  useradd 
+  -g 指定组
+  -u 指定user id
+  -c 添加注释
+  -s  shell
+  -d 指定家目录
+  -G 指定属于多个组
+  -M 没有家目录
+  -D 改变默认属性，/etc/defauld/userid
+  -e 修改过期时间
+  userdel -r
+  usermod ...
+  gruoupadd 添加组
+  groupdel
+  passwd 修改密码 --stdin非交互式 
+  chage修改密码过期属性 --l查看  -E 修改
+  su 切换用户角色  - 代表切到用户 -c 切换用户执行完毕退回
+  sudo 作为其他用户执行命令
+  visudo
+  groups
+  newgrp
+  id 打印ID
+  w  who last lastlog  whoami
+1.服务器日志审计项目提出与实施
+  1)权限控制后进一步实施对所有用户日志记录方案
+  2)通过sudo和syslog配合实现所有用户进行日志审计并将记录集中管理
+  3)实施后让所有运维和开发的所有执行命令都有记录可查，杜绝了内部人员的操作隐患
+
+  配置sudo命令用户行为日志审计
+  说明：不记录普通用户的普通操作，而是及记录sudo命令的用户操作。
+  
+  rpm -qa|egrep "sudo|rsyslog" 查看是否安装
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

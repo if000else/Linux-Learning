@@ -1,0 +1,7 @@
+10.10.10.9  backup01
+10.10.10.8  nfs
+10.10.10.7  db-mysql
+10.10.10.6  nginx-web2
+10.10.10.5  apach-web1
+10.10.10.4  nginx-lb02
+10.10.10.3  nginx-lb01

@@ -1,0 +1,81 @@
+定时任务crond
+1. crontab -l 查看定时任务
+   crontab -e 编辑定时任务
+   cat /etc/crontab
+2.分类
+系统定时任务：日志消息，系统轮询，
+用户定时任务：优化，手动添加
+
+定时任务软件：crond,at,anacron
+at:执行一次就不再执行，用于突发性任务。对应的服务是atd.
+anacron:适用于非7x24小时任务，基本没什么用了。
+
+3.crond服务：守护进程，一直运行
+  crontab是它的设置命令，
+  -e edit
+  -l list
+  -r delete
+  -i prompt before deleting 
+  -u 指定特定用户的定时任务
+  eg:crontab cat /var/spool/cron/root 文件所在，root用户对应root
+  eg：crontab -u oldboy -l
+  格式：cat /etc/crontab
+  *****（分、时、日、月、周）
+  *表示任意时间，“每”
+  - 表示范围，17-19
+  /n 每单位时间
+  ，分隔
+  eg: 00 23 * * * cmd 表示23:00执行
+    一个*等于 0-59/1
+      00 17-19 * * * 每天17-19点
+      30 17,18,19 * * *每天17:30,18:30
+      */10 * * * * 每隔十分钟
+4.chkconfig --list crond 查看服务是否启动
+  ps -ef|grep crond|grep -v grep程序是否运行
+  必须两者都启动！
+5.小结
+  定时任务要加注释，结尾要有>/dev/null 2>&1
+  目录必须存在，且要绝对路径
+  crond服务必须开启
+
+6.作业  
+  设置每周六周日每天的9点和14点执行脚本oldboy.sh
+  脚本内容为打印当前日期
+  提示：
+  新建sh文件后没有执行权限，一般不去添加x权限，而是用/bin/sh   /server/scripts/oldboy.sh 
+  写法：
+  00 09,14 * * 6,0 /bin/sh     /server/scripts/oldboy.sh>dev/null 2&1
+7.定时任务要领
+ 1)定时任务规则加注释
+ 2)执行shell脚本任务前加/bin/sh
+ 3)定时任务或脚本结尾加>dev/null 2>&1
+ 4)定时任务或程序最好写到脚本里
+ 5)在指定用户下执行相关的定时任务
+ 6)生产任务程序不要随意打印输出信息，如tar zcvf去掉v
+ 7)定时任务执行的脚本要规范路径
+ 8)配置定时任务规范操作过程，防止出错
+   a.首先要在命令行操作成功，然后复制成功的命令到脚本里，在各个细小环节减少出错几率
+   b.测试脚本，成功后，复制脚本的规范路径到定时任务配置里，不要手敲
+   c.先在测试环境，然后再部署到正式环境
+
+
+8.邮件临时队列
+  邮件队列会存放在/var/spool/clientmqueue或者/var/spool/prostfix/maildrop下面，会占用inode，可能会报错！
+
+9.作业题：
+ a.每隔一分钟，打印一个+号到oldboy.log，给出crontab 完整命令。
+ b.每隔两小时，将系统文件/etc/service 打包到/tmp下，每次备份按时间生成备份包。
+
+
+
+
+
+
+
+
+
+
+
+
+
+

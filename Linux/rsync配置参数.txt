@@ -1,0 +1,23 @@
+#Rsync server
+#create by raoky 1017-11-01
+#create by raoky 1017-11-01  中文部分要去掉才能使用！！！
+###rsyncd.conf start##
+uid = rsync  用户
+gid = rsync  用户
+use chroot = no  安全相关，出现漏洞后把信息定向到某个文件
+max connections = 2000 连接数
+timeout = 600  超时
+pid file = /var/run/rsyncd.pid  进程号文件
+lock file = /var/run/rsync.lock  锁文件
+log file = /var/log/rsyncd.log  日志文件
+ignore errors 忽略错误
+read only = false 读写
+list = false 不可以使用ls命令查看目录
+hosts allow = 10.0.0.0/24
+hosts deny = 0.0.0.0/32  很少用 
+auth users = rsync_backup 虚拟用户
+secrets file = /etc/rsync.password 密码文件
+############################
+[backup]   模块
+comment = backup server by oldboy 21:35 2017-11-01  注释
+path = /backup 共享的目录

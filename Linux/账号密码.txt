@@ -1,0 +1,6 @@
+1.Linux non-desk
+  root  huayiqiu
+  Leon  ^GUAN_I@U
+2.Linux desk
+  root  huayiqiu
+  Leon  ^GUAN_I@U

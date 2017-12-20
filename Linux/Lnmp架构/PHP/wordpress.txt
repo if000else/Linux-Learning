@@ -1,0 +1,11 @@
+1.wget ...
+2.mysql
+  create database wordpress;新建数据库
+  show databases;
+  grant all on wordpress.* to wordpress@'localhost' identified by '123456';创建用户
+  flush privileges;刷新权限
+  select user,host from mysql.user;
+3.tar...解压
+  mv 到/blog文件夹
+  chown -R /blog
+看到防木马。。。

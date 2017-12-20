@@ -1,0 +1,7 @@
+1.uniq file  默认去掉相邻的重复项
+2.sort + uniq  file去掉所有重复并排序
+  sort -u file 同上 -u参数就是uniq
+3.sort oldboy.txt |uniq -c 去重后并计数
+4.sort -r 倒序
+5.sort -n按照数字排序
+6.sort -t'/' -k2 file 以/为分隔符，以第二列为准排序
